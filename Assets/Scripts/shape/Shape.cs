@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class Shape : MonoBehaviour,IPointerClickHandler,IPointerUpHandler,IPointerDownHandler,IBeginDragHandler,
+public class Shape : MonoBehaviour,IBeginDragHandler,
     IEndDragHandler,IDragHandler
 {
     public GameObject squareShapeImage;
@@ -18,18 +18,21 @@ public class Shape : MonoBehaviour,IPointerClickHandler,IPointerUpHandler,IPoint
     private List<GameObject> _currentShape = new List<GameObject>();
     private Vector3 _shapeStartScale;
     private RectTransform _transform;
-    private bool _shapeDragable = true;
+    //private bool _shapeDragable = true;
     private Canvas _canvas;
     private Vector3 _startPosition;
     private bool _shapeActive;
+
+    private IShapeDragHandler _dragHandler;
     public void Awake()
     {
         _shapeStartScale = this.GetComponent<RectTransform>().localScale;
         _transform = this.GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
-        _shapeDragable = true;
+       // _shapeDragable = true;
         _startPosition = _transform.localPosition;
         _shapeActive = true;
+        _dragHandler = new DefaultShapeDragHandler();
     }
     private void OnEnable()
     {
@@ -235,21 +238,6 @@ public class Shape : MonoBehaviour,IPointerClickHandler,IPointerUpHandler,IPoint
         return number;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-       // throw new System.NotImplementedException();
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-       // throw new System.NotImplementedException();
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-       // throw new System.NotImplementedException();
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         this.GetComponent<RectTransform>().localScale = shapeSelectedScale;
@@ -257,9 +245,9 @@ public class Shape : MonoBehaviour,IPointerClickHandler,IPointerUpHandler,IPoint
 
     public void OnDrag(PointerEventData eventData)
     {
-        _transform.anchorMin = new Vector2(0,0);
+        _transform.anchorMin = new Vector2(0, 0);
         _transform.anchorMax = new Vector2(0, 0);
-        _transform.pivot = new Vector2(0,0);
+        _transform.pivot = new Vector2(0, 0);
         Vector2 pos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvas.transform as RectTransform,
             eventData.position, Camera.main, out pos);
@@ -275,4 +263,19 @@ public class Shape : MonoBehaviour,IPointerClickHandler,IPointerUpHandler,IPoint
     {
         _transform.transform.localPosition = _startPosition;
     }
+
+    /*public void OnPointerClick(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }*/
 }
