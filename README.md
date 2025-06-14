@@ -12,7 +12,7 @@ With limited space and an endless supply of blocky challenges, every move counts
                 •	Event-driven programming with C# delegates   
                 •	Custom serialization logic     
 **Design Patterns**: 
-                    •	Event System   
+                    •	Event System    
                     •	Strategy Pattern    
                     •	MVC   
                     •	Observer Pattern    
