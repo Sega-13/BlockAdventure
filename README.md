@@ -11,7 +11,7 @@ With limited space and an endless supply of blocky challenges, every move counts
                 •	ScriptableObjects   
                 •	Event-driven programming with C# delegates   
                 •	Custom serialization logic     
-**Design Patterns**: 
+**Design Patterns**:    
                     •	Event System    
                     •	Strategy Pattern    
                     •	MVC   
