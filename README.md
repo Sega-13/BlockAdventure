@@ -6,17 +6,17 @@ With limited space and an endless supply of blocky challenges, every move counts
 
 **Game Genre** : Puzzle, Adventure, Learning   
 **Technology** :   
-                •	Unity Engine (C#)
-                •	Unity UI Toolkit (Canvas, Animators)
-                •	ScriptableObjects
-                •	Event-driven programming with C# delegates
-                •	Custom serialization logic   
+                •	Unity Engine (C#)   
+                •	Unity UI Toolkit (Canvas, Animators)   
+                •	ScriptableObjects   
+                •	Event-driven programming with C# delegates   
+                •	Custom serialization logic     
 **Design Patterns**: 
-                    •	Event System
-                    •	Strategy Pattern
-                    •	MVC
-                    •	Observer Pattern
-                    •	State Pattern
-                    •	Factory Pattern
+                    •	Event System   
+                    •	Strategy Pattern    
+                    •	MVC   
+                    •	Observer Pattern    
+                    •	State Pattern    
+                    •	Factory Pattern    
 
 
