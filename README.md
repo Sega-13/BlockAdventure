@@ -20,13 +20,10 @@ With limited space and an endless supply of blocky challenges, every move counts
                     •	Factory Pattern    
 **Images**   
 
-![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-1.png)
+![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-1.png)      ![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-2.png)
 
-![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-2.png)
+![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-4.png)      ![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-5.png)
 
-![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-4.png)
-
-![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-5.png)
-
-![Screenshot] (images/img-1.png)
+**Video**
+https://github.com/Sega-13/BlockAdventure/blob/main/images/Recordings/Movie_003.mp4
 
