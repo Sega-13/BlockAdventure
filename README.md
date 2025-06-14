@@ -18,5 +18,7 @@ With limited space and an endless supply of blocky challenges, every move counts
                     •	Observer Pattern    
                     •	State Pattern    
                     •	Factory Pattern    
+**Images**   
 
+![Screenshot] (images/img-1.png)
 
