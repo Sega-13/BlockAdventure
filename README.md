@@ -1,4 +1,4 @@
-                                                                ****BlockAdventure****
+                                                          ****BlockAdventure****
                                                                 
 With limited space and an endless supply of blocky challenges, every move counts. Strategize, score big, and beat your best score in this addictive puzzle adventure that’s perfect for all ages.   
 
@@ -20,9 +20,7 @@ With limited space and an endless supply of blocky challenges, every move counts
                     •	Factory Pattern    
 **Images**   
 
-![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-1.png)      ![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-2.png)
-
-![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-4.png)    ![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-5.png)
+![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-1.png)![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-2.png)![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-4.png)![](https://github.com/Sega-13/BlockAdventure/blob/main/images/img-5.png)
 
 **Video**
 https://github.com/Sega-13/BlockAdventure/blob/main/images/Recordings/Movie_002.mp4
