@@ -2,24 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridSquareFactory 
+namespace GameBlockAdv.Grid
 {
-    private readonly GameObject _gridSquarePrefab;
-
-    public GridSquareFactory(GameObject gridSquarePrefab)
+    public class GridSquareFactory
     {
-        _gridSquarePrefab = gridSquarePrefab;
-    }
+        private readonly GameObject _gridSquarePrefab;
 
-    public GameObject Create(int index, Transform parent, float scale, bool isEven)
-    {
-        GameObject square = Object.Instantiate(_gridSquarePrefab, Vector3.zero, Quaternion.identity, parent);
-        square.transform.localScale = new Vector3(scale, scale, scale);
+        public GridSquareFactory(GameObject gridSquarePrefab)
+        {
+            _gridSquarePrefab = gridSquarePrefab;
+        }
 
-        GridSquare gridSquare = square.GetComponent<GridSquare>();
-        gridSquare.squareIndex = index;
-        gridSquare.SetImage(isEven);
+        public GameObject Create(int index, Transform parent, float scale, bool isEven)
+        {
+            GameObject square = Object.Instantiate(_gridSquarePrefab, Vector3.zero, Quaternion.identity, parent);
+            square.transform.localScale = new Vector3(scale, scale, scale);
 
-        return square;
+            GridSquare gridSquare = square.GetComponent<GridSquare>();
+            gridSquare.squareIndex = index;
+            gridSquare.SetImage(isEven);
+
+            return square;
+        }
     }
 }
+

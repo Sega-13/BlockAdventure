@@ -1,9 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using GameBlockAdv.SquareShape;
 
-public class Bonus : MonoBehaviour
+namespace GameBlockAdv.BonusPoint
 {
-    public Config.SquareColor color = Config.SquareColor.Blue;
-  
+    public class Bonus : MonoBehaviour
+    {
+        public SquareColor color = SquareColor.Blue;
+
+    }
+
 }
+

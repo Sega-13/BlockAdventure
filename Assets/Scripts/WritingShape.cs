@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WritingShape : MonoBehaviour
+namespace GameBlockAdv
 {
-    public void DeActivateWrite()
+    public class WritingShape : MonoBehaviour
     {
-        gameObject.SetActive(false);
+        public void DeActivateWrite()
+        {
+            gameObject.SetActive(false);
+        }
+
     }
-  
 }
+

@@ -1,56 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
-using UnityEditor;
 
-public class BinaryDataStream 
+namespace GameBlockAdv.Utility
 {
-    public static void Save<T>(T serializedObject, string fileName)
+    public class BinaryDataStream
     {
-        string path = Application.persistentDataPath + "/saves";
-        Directory.CreateDirectory(path);
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream fileStream = new FileStream(path+fileName+".dat",FileMode.Create);
-        try
+        public static void Save<T>(T serializedObject, string fileName)
         {
-            formatter.Serialize(fileStream, serializedObject);
+            string path = Path.Combine(Application.persistentDataPath, "saves");
+            Directory.CreateDirectory(path);
+            string fullPath = Path.Combine(path, fileName + ".dat");
 
-        }catch(SerializationException e)
-        {
-            Debug.Log("Save Filed Error: " + e.Message);
-        }finally 
-        {
-            fileStream.Close(); 
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                using (FileStream fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    formatter.Serialize(fileStream, serializedObject);
+                }
+            }
+            catch (SerializationException e)
+            {
+                Debug.LogError("Save Failed: " + e.Message);
+            }
         }
-    }
-    public static bool Exist(string fileName)
-    {
-        string path = Application.persistentDataPath + "/saves";
-        string fullFileName = fileName + ".dat";
-        return File.Exists(path + fullFileName);
-    }
-    public static T Read<T>(string fileName)
-    {
-        string path = Application.persistentDataPath + "/saves";
-        BinaryFormatter binaryFormatter = new BinaryFormatter();
-        FileStream fileStream = new FileStream(path+fileName+".dat",FileMode.Open);
-        T returnType = default(T);
-        try
-        {
-            returnType = (T) binaryFormatter.Deserialize(fileStream);
 
-        }
-        catch (SerializationException e)
+        public static bool Exist(string fileName)
         {
-            Debug.Log("Read Filed Error: " + e.Message);
+            string path = Path.Combine(Application.persistentDataPath, "saves");
+            string fullPath = Path.Combine(path, fileName + ".dat");
+            return File.Exists(fullPath);
         }
-        finally
+
+        public static T Read<T>(string fileName)
         {
-            fileStream.Close();
+            string path = Path.Combine(Application.persistentDataPath, "saves");
+            string fullPath = Path.Combine(path, fileName + ".dat");
+
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogWarning("File not found: " + fullPath);
+                return default(T);
+            }
+
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            T returnType = default(T);
+
+            try
+            {
+                using (FileStream fileStream = new FileStream(fullPath, FileMode.Open))
+                {
+                    returnType = (T)binaryFormatter.Deserialize(fileStream);
+                }
+            }
+            catch (SerializationException e)
+            {
+                Debug.LogError("Read failed: " + e.Message);
+            }
+
+            return returnType;
         }
-        return returnType;
+
     }
+
 }

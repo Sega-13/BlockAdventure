@@ -1,50 +1,53 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShapeStorage : MonoBehaviour
+namespace GameBlockAdv.SquareShape
 {
-    public List<ShapeData> shapeData;
-    public List<Shape> shapeList;
-
-    private void OnEnable()
+    public class ShapeStorage : MonoBehaviour
     {
-        GameEvents.RequestNewShapes += RequestNewShapes;
+        [SerializeField] private List<ShapeData> shapeData;
+        public List<Shape> shapeList;
 
-
-    }
-    private void OnDisable()
-    {
-        GameEvents.RequestNewShapes -= RequestNewShapes;
-    }
-    void Start()
-    {
-        foreach(var shape in shapeList)
+        private void OnEnable()
         {
-            var shapeIndex = UnityEngine.Random.Range(0, shapeData.Count);
-            shape.CreateShape(shapeData[shapeIndex]);
+            GameEvents.RequestNewShapes += RequestNewShapes;
+
+
         }
-    }
-    
-    public Shape GetCurrentSelectedShape()
-    {
-        foreach (var shape in shapeList)
+        private void OnDisable()
         {
-            if(shape.IsOnStartPosition() == false && shape.IsOfAnyShapeSquareActive())
+            GameEvents.RequestNewShapes -= RequestNewShapes;
+        }
+        void Start()
+        {
+            foreach (var shape in shapeList)
             {
-                return shape;
+                var shapeIndex = UnityEngine.Random.Range(0, shapeData.Count);
+                shape.CreateShape(shapeData[shapeIndex]);
             }
         }
-        Debug.Log("No Shape");
-        return null;
-    }
-    private void RequestNewShapes()
-    {
-        foreach (var shape in shapeList)
+
+        public Shape GetCurrentSelectedShape()
         {
-            var shapeIndex = UnityEngine.Random.Range(0,shapeData.Count);
-            shape.RequestNewShape(shapeData[shapeIndex]);
+            foreach (var shape in shapeList)
+            {
+                if (shape.IsOnStartPosition() == false && shape.IsOfAnyShapeSquareActive())
+                {
+                    return shape;
+                }
+            }
+            Debug.Log("No Shape");
+            return null;
         }
+        private void RequestNewShapes()
+        {
+            foreach (var shape in shapeList)
+            {
+                var shapeIndex = UnityEngine.Random.Range(0, shapeData.Count);
+                shape.RequestNewShape(shapeData[shapeIndex]);
+            }
+        }
+
     }
-   
+
 }

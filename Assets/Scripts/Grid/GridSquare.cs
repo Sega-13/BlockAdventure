@@ -1,103 +1,79 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameBlockAdv.SquareShape;
 
-public class GridSquare : MonoBehaviour
+namespace GameBlockAdv.Grid
 {
-    public Image hooverImage;
-    public Image activeImage;
-    public Image normalImage;
-    public List<Sprite> normalImages;
-    private Config.SquareColor currentSquareColor = Config.SquareColor.Notset;
+    public class GridSquare : MonoBehaviour
+    {
+        [SerializeField] private Image hooverImage;
+        [SerializeField] private Image activeImage;
+        [SerializeField] private Image normalImage;
+        [SerializeField] private List<Sprite> normalImages;
 
-    public Config.SquareColor GetCurrentColor() { return currentSquareColor; }
+        private SquareColor currentSquareColor = SquareColor.Notset;
 
-    public bool Selected {  get;  set; }
-    public int squareIndex { get; set; }
-    public bool squareOccupied { get; set; }
+        public SquareColor GetCurrentColor() { return currentSquareColor; }
 
-    private IGridSquareState _availableState = new AvailableState();
-    private IGridSquareState _occupiedState = new OccupiedState();
-    private IGridSquareState _currentState;
-    void Start()
-    {
-        Selected = false;
-        squareOccupied = false;
-        _currentState = _availableState;
-    }
-    
-    public void PlaceShapeOnBoard(Config.SquareColor color)
-    {
-         currentSquareColor = color;
-         ActivateSquare();
-    }
-    public void ActivateSquare()
-    {
-        hooverImage.gameObject.SetActive(false);
-        activeImage.gameObject.SetActive(true);
-        Selected = true;
-        squareOccupied=true;
-        _currentState = _occupiedState;
-    }
-    public void Deactivate()
-    {
-        currentSquareColor = Config.SquareColor.Notset;
-        activeImage.gameObject.SetActive(false);
-    }
-    public void ClearOccupied()
-    {
-        Selected=false;
-        squareOccupied = false;
-        _currentState = _availableState;
-    }
-    public void SetImage(bool setFirstImage)
-    {
-        normalImage.GetComponent<Image>().sprite = setFirstImage? normalImages[1] : normalImages[0];
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        _currentState.OnEnter(this, collision);
-        /* if(squareOccupied == false)
-         {
-             Selected =true;
-             hooverImage.gameObject.SetActive(true);
-         }else if(collision.GetComponent<ShapeSquare>() != null)
-         {
-             collision.GetComponent<ShapeSquare>().SetOccupied();
-         }*/
+        public bool Selected { get; set; }
+        public int squareIndex { get; set; }
+        public bool squareOccupied { get; set; }
 
-
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        _currentState.OnStay(this, collision);
-        /* Selected = true;
-         if(squareOccupied == false)
-         {
-             hooverImage.gameObject.SetActive(true);
-         }
-         else if (collision.GetComponent<ShapeSquare>() != null)
-         {
-             collision.GetComponent<ShapeSquare>().SetOccupied();
-         }*/
-
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _currentState.OnExit(this, collision);
-        /*if(squareOccupied == false)
+        private IGridSquareState _availableState = new AvailableState();
+        private IGridSquareState _occupiedState = new OccupiedState();
+        private IGridSquareState _currentState;
+        void Start()
         {
             Selected = false;
-            hooverImage.gameObject.SetActive(false);
-        }else if(collision.GetComponent<ShapeSquare>()!= null)
-        {
-            collision.GetComponent <ShapeSquare>().UnSetOccupied();
-        }*/
+            squareOccupied = false;
+            _currentState = _availableState;
+        }
 
+        public void PlaceShapeOnBoard(SquareColor color)
+        {
+            currentSquareColor = color;
+            ActivateSquare();
+        }
+        public void ActivateSquare()
+        {
+            hooverImage.gameObject.SetActive(false);
+            activeImage.gameObject.SetActive(true);
+            Selected = true;
+            squareOccupied = true;
+            _currentState = _occupiedState;
+        }
+        public void Deactivate()
+        {
+            currentSquareColor = SquareColor.Notset;
+            activeImage.gameObject.SetActive(false);
+        }
+        public void ClearOccupied()
+        {
+            Selected = false;
+            squareOccupied = false;
+            _currentState = _availableState;
+        }
+        public void SetImage(bool setFirstImage)
+        {
+            normalImage.GetComponent<Image>().sprite = setFirstImage ? normalImages[1] : normalImages[0];
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            _currentState.OnEnter(this, collision);
+        }
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            _currentState.OnStay(this, collision);
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            _currentState.OnExit(this, collision);
+        }
+        public void ShowHoverImage(bool show)
+        {
+            hooverImage.gameObject.SetActive(show);
+        }
     }
-    public void ShowHoverImage(bool show)
-    {
-        hooverImage.gameObject.SetActive(show);
-    }
+
 }

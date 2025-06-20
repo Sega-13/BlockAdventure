@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Config : MonoBehaviour
+namespace GameBlockAdv.SquareShape
 {
-   public enum SquareColor
+    public enum SquareColor
     {
         Notset,
         Red,
@@ -17,3 +13,4 @@ public class Config : MonoBehaviour
         Purpule
     }
 }
+

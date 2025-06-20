@@ -1,33 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using GameBlockAdv.SquareShape;
 
-public class OccupiedState : IGridSquareState
+namespace GameBlockAdv.Grid
 {
-    public void OnEnter(GridSquare square, Collider2D collision)
+    public class OccupiedState : IGridSquareState
     {
-        NotifyShape(square, collision);
-    }
+        public void OnEnter(GridSquare square, Collider2D collision)
+        {
+            NotifyShape(square, collision);
+        }
 
-    public void OnStay(GridSquare square, Collider2D collision)
-    {
-        NotifyShape(square, collision);
-    }
+        public void OnStay(GridSquare square, Collider2D collision)
+        {
+            NotifyShape(square, collision);
+        }
 
-    public void OnExit(GridSquare square, Collider2D collision)
-    {
-        UnnotifyShape(square, collision);
-    }
+        public void OnExit(GridSquare square, Collider2D collision)
+        {
+            UnnotifyShape(square, collision);
+        }
 
-    private void NotifyShape(GridSquare square, Collider2D collision)
-    {
-        var shape = collision.GetComponent<ShapeSquare>();
-        shape?.SetOccupied();
-    }
+        private void NotifyShape(GridSquare square, Collider2D collision)
+        {
+            var shape = collision.GetComponent<ShapeSquare>();
+            shape?.SetOccupied();
+        }
 
-    private void UnnotifyShape(GridSquare square, Collider2D collision)
-    {
-        var shape = collision.GetComponent<ShapeSquare>();
-        shape?.UnSetOccupied();
+        private void UnnotifyShape(GridSquare square, Collider2D collision)
+        {
+            var shape = collision.GetComponent<ShapeSquare>();
+            shape?.UnSetOccupied();
+        }
     }
 }
+

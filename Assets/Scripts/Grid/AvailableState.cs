@@ -1,24 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AvailableState : IGridSquareState
+namespace GameBlockAdv.Grid
 {
-    public void OnEnter(GridSquare square, Collider2D collision)
+    public class AvailableState : IGridSquareState
     {
-        square.Selected = true;
-        square.ShowHoverImage(true);
-    }
+        public void OnEnter(GridSquare square, Collider2D collision)
+        {
+            square.Selected = true;
+            square.ShowHoverImage(true);
+        }
 
-    public void OnStay(GridSquare square, Collider2D collision)
-    {
-        square.Selected = true;
-        square.ShowHoverImage(true);
-    }
+        public void OnStay(GridSquare square, Collider2D collision)
+        {
+            square.Selected = true;
+            square.ShowHoverImage(true);
+        }
 
-    public void OnExit(GridSquare square, Collider2D collision)
-    {
-        square.Selected = false;
-        square.ShowHoverImage(false);
+        public void OnExit(GridSquare square, Collider2D collision)
+        {
+            square.Selected = false;
+            square.ShowHoverImage(false);
+        }
     }
 }
+

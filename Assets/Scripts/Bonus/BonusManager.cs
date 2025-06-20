@@ -1,39 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameBlockAdv.SquareShape;
 
-public class BonusManager : MonoBehaviour
+namespace GameBlockAdv.BonusPoint
 {
-    public List<GameObject> bonusList;
-
-    private void Start()
+    public class BonusManager : MonoBehaviour
     {
-        GameEvents.ShowBonusScreen += ShowBonusScreen;
-    }
+        [SerializeField] private List<GameObject> bonusList;
 
-    private void OnDisable()
-    {
-        GameEvents.ShowBonusScreen -= ShowBonusScreen;
-    }
-
-    private void ShowBonusScreen(Config.SquareColor color)
-    {
-        GameObject obj = null;
-        foreach(var bonus in bonusList)
+        private void Start()
         {
-            var bonusComp = bonus.GetComponent<Bonus>();
-            if(bonusComp.color == color)
-            {
-                obj = bonus;
-                bonus.SetActive(true);
-            }
+            GameEvents.ShowBonusScreen += ShowBonusScreen;
         }
-        StartCoroutine(DeactivateBonus(obj));
+
+        private void OnDisable()
+        {
+            GameEvents.ShowBonusScreen -= ShowBonusScreen;
+        }
+
+        private void ShowBonusScreen(SquareColor color)
+        {
+            GameObject obj = null;
+            foreach (var bonus in bonusList)
+            {
+                var bonusComp = bonus.GetComponent<Bonus>();
+                if (bonusComp.color == color)
+                {
+                    obj = bonus;
+                    bonus.SetActive(true);
+                }
+            }
+            StartCoroutine(DeactivateBonus(obj));
+        }
+
+        private IEnumerator DeactivateBonus(GameObject obj)
+        {
+            yield return new WaitForSeconds(2);
+            obj.SetActive(false);
+        }
     }
 
-    private IEnumerator DeactivateBonus(GameObject obj)
-    {
-        yield return new WaitForSeconds(2);
-        obj.SetActive(false);
-    }
 }
+
